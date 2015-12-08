@@ -7,16 +7,12 @@
 
         <h2> <a href="/bank-1/goback">Go back to login page</a></h2>
 
-        <form action="/bank-1/decision-from-insp" method="post">
+        <form action="/bank-1/decision-from-emp" method="post">
             <table>
               <tr>
                 <td>Create new request:</td>
                 <td><textarea type="text" readonly="readonly" name="request-content">${contentForEdit}</textarea></td>
               </tr>
-               <tr>
-                 <td>Conditions:</td>
-                 <td><textarea type="text" name="request-conditions"></textarea></td>
-               </tr>
             </table>
             <input type="hidden" name="request-id" value="${requestId}">
             <select name="decision">
@@ -24,6 +20,12 @@
               <option value="false">Disapprove</option>
             </select>
             <input type="submit" value="save decision" />
+        </form>
+        <form action="/bank-1/request-account-state/${requestId}" method="post">
+            <input type="submit" value="get account state" />
+        </form>
+        <form action="/bank-1/request-create/${requestId}" method="post">
+            <input type="submit" value="create" />
         </form>
 
     </body>

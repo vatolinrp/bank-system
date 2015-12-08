@@ -7,26 +7,19 @@
 
         <h2> <a href="/bank-1/goback">Go back to login page</a></h2>
 
-
-        <form action="/bank-1/decision-from-ref" method="post">
+        <form action="/bank-1/save-request" method="post">
             <table>
               <tr>
                 <td>Create new request:</td>
-                <td><textarea type="text" readonly="readonly" name="request-content">${contentForEdit}</textarea></td>
+                <td><textarea type="text" name="request-content">${contentForEdit}</textarea></td>
               </tr>
             </table>
             <input type="hidden" name="request-id" value="${requestId}">
             <input type="hidden" name="appr-by-ref" value="${apprByRef}">
-            <select name="decision">
-              <option value="true">Approve</option>
-              <option value="false">Disapprove</option>
-            </select>
-            <input type="submit" value="save decision" />
+            <input type="submit" value="save" />
         </form>
-        <form action="/bank-1/request-credit-report/${requestId}" method="post">
-            <input type="submit" value="get credit report" />
-        </form>
-
-
+         <form action="/bank-1/request-agree-with-cond/${requestId}" method="post">
+              <input type="submit" value="ask for creation" />
+         </form>
     </body>
 </html>
