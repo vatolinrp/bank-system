@@ -18,13 +18,13 @@ import java.util.List;
 public class CreditRequestController
 {
     @Resource
-    RequestDao requestDao;
+    private RequestDao requestDao;
 
     /**
      * gets all requests from database
      */
-    public ModelAndView getAllRequests(HttpServletRequest request,
-                                       HttpServletResponse response,ModelAndView model ) throws Exception
+    public ModelAndView showAllRequests(HttpServletRequest request,
+                                        HttpServletResponse response, ModelAndView model ) throws Exception
     {
         String page = String.valueOf((request.getSession()).getAttribute("page"));
         model.setViewName(page);
@@ -43,7 +43,7 @@ public class CreditRequestController
     }
 
     @RequestMapping(value = "/save-request", method = RequestMethod.POST)
-    public ModelAndView showFrom(HttpServletRequest request,
+    public ModelAndView saveRequest(HttpServletRequest request,
                                  HttpServletResponse response) throws Exception
     {
         ModelAndView model = new ModelAndView();
@@ -67,11 +67,11 @@ public class CreditRequestController
                 requestDao.create(requestBean);
             }
         }
-        return getAllRequests(request,response,model);
+        return showAllRequests(request,response,model);
     }
 
     @RequestMapping(value = "/show/request/{requestId}", method = RequestMethod.GET)
-    public ModelAndView showFrom(HttpServletRequest request,
+    public ModelAndView showRequest(HttpServletRequest request,
                                  HttpServletResponse response,@PathVariable String requestId) throws Exception
     {
         ModelAndView model = new ModelAndView();
@@ -79,7 +79,8 @@ public class CreditRequestController
         model.addObject("contentForEdit",requestBean.getContent());
         model.addObject("requestId",requestBean.getId());
         model.addObject("apprByRef",requestBean.isApprByRef().toString());
-        return getAllRequests(request,response,model);
+        model.addObject("contentForView",requestBean.getContentForView());
+        return showAllRequests(request,response,model);
     }
 
     @RequestMapping(value = "/request-credit-report/{requestId}", method = RequestMethod.POST)
@@ -93,7 +94,7 @@ public class CreditRequestController
             requestBean.setCredReport("this is a credit report"+ requestBean.getId());
             requestDao.update(requestBean);
         }
-        return getAllRequests(request,response,model);
+        return showAllRequests(request,response,model);
     }
 
     @RequestMapping(value = "/request-account-state/{requestId}", method = RequestMethod.POST)
@@ -107,7 +108,7 @@ public class CreditRequestController
             requestBean.setAccState("this is an account state"+ requestBean.getId());
             requestDao.update(requestBean);
         }
-        return getAllRequests(request,response,model);
+        return showAllRequests(request,response,model);
     }
 
     @RequestMapping(value = "/request-agree-with-cond/{requestId}", method = RequestMethod.POST)
@@ -121,7 +122,7 @@ public class CreditRequestController
             requestBean.setCreated("client agreed, waiting for employee");
             requestDao.update(requestBean);
         }
-        return getAllRequests(request,response,model);
+        return showAllRequests(request,response,model);
     }
 
 
@@ -137,7 +138,7 @@ public class CreditRequestController
             requestBean.setCreated("created!");
             requestDao.update(requestBean);
         }
-        return getAllRequests(request,response,model);
+        return showAllRequests(request,response,model);
     }
 
     @RequestMapping(value = "/decision-from-ref", method = RequestMethod.POST)
@@ -153,7 +154,7 @@ public class CreditRequestController
             requestBean.setApprByRef(Boolean.valueOf(decision));
             requestDao.update(requestBean);
         }
-        return getAllRequests(request,response,model);
+        return showAllRequests(request,response,model);
     }
 
     @RequestMapping(value = "/decision-from-insp", method = RequestMethod.POST)
@@ -174,7 +175,7 @@ public class CreditRequestController
                 requestDao.update(requestBean);
             }
         }
-        return getAllRequests(request,response,model);
+        return showAllRequests(request,response,model);
     }
     @RequestMapping(value = "/decision-from-emp", method = RequestMethod.POST)
     public ModelAndView approveByEmp(HttpServletRequest request,
@@ -189,6 +190,6 @@ public class CreditRequestController
             requestBean.setApprByEmp(Boolean.valueOf(decision));
             requestDao.update(requestBean);
         }
-        return getAllRequests(request,response,model);
+        return showAllRequests(request,response,model);
     }
 }

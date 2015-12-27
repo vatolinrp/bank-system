@@ -12,6 +12,7 @@
               <tr>
                 <td>Create new request:</td>
                 <td><textarea type="text" name="request-content">${contentForEdit}</textarea></td>
+                ${contentForView}
               </tr>
             </table>
             <input type="hidden" name="request-id" value="${requestId}">

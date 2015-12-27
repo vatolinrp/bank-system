@@ -10,8 +10,7 @@
         <form action="/bank-1/decision-from-insp" method="post">
             <table>
               <tr>
-                <td>Create new request:</td>
-                <td><textarea type="text" readonly="readonly" name="request-content">${contentForEdit}</textarea></td>
+                ${contentForView}
               </tr>
                <tr>
                  <td>Conditions:</td>

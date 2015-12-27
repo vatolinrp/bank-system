@@ -6,11 +6,11 @@
 	<form action="/bank-1/login" method="post">
         <table>
           <tr>
-            <td>Enter name:</td>
+            <td>Enter login:</td>
             <td><input type="text" name="login"/></td>
           </tr>
           <tr>
-            <td>Enter age:</td>
+            <td>Enter password:</td>
             <td><input type="password" name="password"/></td>
           </tr>
         </table>

@@ -12,16 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Map;
-
 @Controller
 public class LoginController
 {
     @Resource
-    UserDao userDao;
+    private UserDao userDao;
 
     @Resource
-    CreditRequestController creditRequestController;
+    private CreditRequestController creditRequestController;
 
     @RequestMapping(value = {"/","/goback"}, method = RequestMethod.GET)
     public ModelAndView showFrom(HttpServletRequest request,
@@ -52,22 +50,22 @@ public class LoginController
                 case "clerk":
                 {
                     httpSession.setAttribute("page","ClerkPage");
-                    return creditRequestController.getAllRequests(request,response,model);
+                    return creditRequestController.showAllRequests(request,response,model);
                 }
                 case "referent":
                 {
                     httpSession.setAttribute("page","ReferentPage");
-                    return creditRequestController.getAllRequests(request,response,model);
+                    return creditRequestController.showAllRequests(request,response,model);
                 }
                 case "employee":
                 {
                     httpSession.setAttribute("page","EmployeePage");
-                    return creditRequestController.getAllRequests(request,response,model);
+                    return creditRequestController.showAllRequests(request,response,model);
                 }
                 case "inspector":
                 {
                     httpSession.setAttribute("page","InspectorPage");
-                    return creditRequestController.getAllRequests(request,response,model);
+                    return creditRequestController.showAllRequests(request,response,model);
                 }
             }
         }

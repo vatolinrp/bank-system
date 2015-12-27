@@ -14,6 +14,29 @@ public class Request implements Serializable
     private String conditions;
     private String isCreated;
 
+    public String getContentForView()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<tr>")
+        .append("<td>").append("id:").append("</td>").append("<td>").append(id).append("</td>")
+        .append("<td>").append(" | is approved by referent:").append("</td>").append("<td>").append(isApprByRef).append("</td>")
+        .append("<td>").append(" | is approved by employee:").append("</td>").append("<td>").append(isApprByEmp).append("</td>")
+        .append("<td>").append(" | is approved by inspector:").append("</td>").append("<td>").append(isApprByInsp).append("</td>")
+        .append("<td>").append(" | is created:").append("</td>").append("<td>").append(isCreated).append("</td>")
+        .append("</tr>")
+
+        .append("<tr>")
+        .append("<td>").append(" | content:").append("</td>").append("<td>").append(content).append("</td>")
+        .append("<td>").append(" | credit report:").append("</td>").append("<td>").append(credReport).append("</td>")
+        .append("</tr>")
+
+        .append("<tr>")
+        .append("<td>").append(" | account state:").append("</td>").append("<td>").append(accState).append("</td>")
+        .append("<td>").append(" | conditions:").append("</td>").append("<td>").append(conditions).append("</td>")
+        .append("</tr>");
+        return sb.toString();
+    }
+
     public Request()
     {
         content="";
