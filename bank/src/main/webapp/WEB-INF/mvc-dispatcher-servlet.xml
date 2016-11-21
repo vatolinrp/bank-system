@@ -16,7 +16,7 @@
         </property>
     </bean>
 
-    <context:component-scan base-package="com.mkyong.common" />
+    <context:component-scan base-package="com.vatolinrp.bank.common"/>
 
     <bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
